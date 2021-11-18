@@ -11,6 +11,15 @@ $ docker pull kalilinux/kali-rolling
 $ docker run --tty --interactive kalilinux/kali-rolling /bin/bash
 https://www.kali.org/docs/containers/using-kali-docker-images/
 
+git clone https://github.com/githubfoam/docker-kali-tools-forensics-githubactions.git
+cd docker-kali-tools-forensics-githubactions
+export name="kali/kali-tools-forensics"
+export version="latest"
+export dockerfilename="Dockerfile.kalilinux.kali-tools-forensics"
+docker build --no-cache --rm  -t ${name}:${version} . --file dockerfiles/${dockerfilename}
+docker image ls
+
+docker run --tty --interactive kali/kali-tools-forensics:latest /bin/bash
 ########################### METAPACKAGE INFO ###########################
 
 
@@ -121,4 +130,12 @@ kali-tools-forensics
   Depends: yara
   Conflicts: <pdfbook>
 
+
+~~~
+~~~
+#install docker-compose
+# https://docs.docker.com/compose/install/
+curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+chmod +x /usr/local/bin/docker-compose
+docker-compose version
 ~~~
