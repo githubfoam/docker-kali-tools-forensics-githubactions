@@ -23,21 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ltrace \
     # https://github.com/danielmiessler/SecLists
     seclists \ 
+    ansible \
     hping3
-
-# custom git packages
-RUN apt-get update && \
-    #wa3f
-    apt-get install -y libssl-dev \
-    libxml2-dev \
-    libxslt1-dev \
-    zlib1g-dev \
-    python-dev \
-    python-pybloomfiltermmap && \
-    git clone https://github.com/andresriancho/w3af.git /opt/w3af && \
-    /opt/w3af/w3af_console && \
-    bash /tmp/w3af_dependency_install.sh && \
-    echo 'export PATH=/opt/w3af:$PATH' >> /etc/profile
 
 #testing
 RUN hping3 -v
